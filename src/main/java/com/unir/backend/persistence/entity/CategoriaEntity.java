@@ -1,5 +1,6 @@
 package com.unir.backend.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class CategoriaEntity {
 
     private String descripcion;
     private Boolean estado;
+
 
     @OneToMany(mappedBy = "categoria")
     private List<ProductoEntity> productos;
