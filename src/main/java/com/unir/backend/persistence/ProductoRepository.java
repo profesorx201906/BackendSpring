@@ -11,4 +11,10 @@ public class ProductoRepository {
     public List<ProductoEntity> getAll(){
         return (List<ProductoEntity>) productoCRUDRepository.findAll();
     }
+
+    public List<ProductoEntity> getByCategiria(int idCategoria)
+    {
+        return productoCRUDRepository.findByIdCategoria(idCategoria);
+        //return productoCRUDRepository.findByCategoria(idCategoria);
+    }
 }
