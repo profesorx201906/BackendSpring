@@ -32,4 +32,8 @@ public class ProductoEntity {
 
     private Boolean estado;
 
+    @ManyToOne
+    @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
+    private CategoriaEntity categoria;
+
 }

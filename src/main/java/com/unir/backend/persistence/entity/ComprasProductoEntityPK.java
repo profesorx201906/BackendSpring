@@ -25,6 +25,7 @@ public class ComprasProductoEntityPK implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ComprasProductoEntityPK that)) return false;
-        return Objects.equals(idCompra, that.idCompra) && Objects.equals(idProducto, that.idProducto);
+        return Objects.equals(idCompra, that.idCompra)
+                && Objects.equals(idProducto, that.idProducto);
     }
 }

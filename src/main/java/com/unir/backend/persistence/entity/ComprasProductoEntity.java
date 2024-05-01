@@ -15,7 +15,6 @@ public class ComprasProductoEntity {
     @Id
     @Column(name = "id_compra", nullable = false)
     private Integer idCompra;
-
     @Id
     @Column(name = "id_producto", nullable = false)
     private Integer idProducto;
@@ -23,4 +22,12 @@ public class ComprasProductoEntity {
     private Integer cantidad;
     private Double total;
     private Boolean estado;
+
+    @ManyToOne
+    @JoinColumn(name = "id_compra",insertable = false,updatable = false)
+    private CompraEntity compra;
+
+    @ManyToOne
+    @JoinColumn(name = "id_producto",insertable = false,updatable = false)
+    private ProductoEntity producto;
 }
