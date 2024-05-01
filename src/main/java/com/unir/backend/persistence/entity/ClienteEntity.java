@@ -4,13 +4,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 @Entity
 @Table(name="clientes")
 @Setter
 @Getter
 @NoArgsConstructor
-public class Cliente {
+public class ClienteEntity {
     @Id
     private String id;
     private String nombre;
@@ -21,3 +20,5 @@ public class Cliente {
     @Column(name="correo_electronico")
     private String correoElectronico;
 }
+
+
