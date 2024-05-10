@@ -5,6 +5,7 @@ import com.unir.backend.domain.repository.ProductDTORepository;
 import com.unir.backend.persistence.crud.ProductoCRUDRepository;
 import com.unir.backend.persistence.entity.ProductoEntity;
 import com.unir.backend.persistence.mapper.ProductMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,8 +13,9 @@ import java.util.Optional;
 
 @Repository
 public class ProductoRepository implements ProductDTORepository {
+    @Autowired
     private ProductoCRUDRepository productoCRUDRepository;
-
+    @Autowired
     private ProductMapper mapper;
 
     @Override
