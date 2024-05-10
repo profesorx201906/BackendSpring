@@ -1,11 +1,7 @@
 package com.unir.backend.domain.repository;
-
 import com.unir.backend.domain.dto.ProductDTO;
-
-
 import java.util.List;
 import java.util.Optional;
-
 
 public interface ProductDTORepository {
     List<ProductDTO> getAll();
