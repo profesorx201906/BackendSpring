@@ -1,37 +1,52 @@
 package com.unir.backend.persistence;
 
+import com.unir.backend.domain.dto.ProductDTO;
+import com.unir.backend.domain.repository.ProductDTORepository;
 import com.unir.backend.persistence.crud.ProductoCRUDRepository;
 import com.unir.backend.persistence.entity.ProductoEntity;
+import com.unir.backend.persistence.mapper.ProductMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class ProductoRepository {
+public class ProductoRepository implements ProductDTORepository {
     private ProductoCRUDRepository productoCRUDRepository;
 
-    public List<ProductoEntity> getAll() {
-        return (List<ProductoEntity>) productoCRUDRepository.findAll();
+    private ProductMapper mapper;
+
+    @Override
+    public List<ProductDTO> getAll() {
+        List<ProductoEntity> productos = (List<ProductoEntity>) productoCRUDRepository.findAll();
+        return mapper.toProducts(productos);
     }
 
-    public List<ProductoEntity> getByCategoria(int idCategoria) {
-        return productoCRUDRepository.findByIdCategoria(idCategoria);
-        //return productoCRUDRepository.findByCategoria(idCategoria);
+    @Override
+    public Optional<List<ProductDTO>> getByCategory(int categoryId) {
+        List<ProductoEntity> productos = productoCRUDRepository.findByIdCategoriaOrderByNombreAsc(categoryId);
+        return Optional.of(mapper.toProducts(productos));
     }
 
-    public Optional<List<ProductoEntity>> getScarseProducts(int quantity) {
-        return productoCRUDRepository.findByCantidadStockLessThanAndEstado(quantity, true);
+    @Override
+    public Optional<List<ProductDTO>> getScarseProducts(int quantity) {
+        Optional<List<ProductoEntity>> productos = productoCRUDRepository.findByCantidadStockLessThanAndEstado(quantity, true);
+        return productos.map(prods -> mapper.toProducts(prods));
     }
 
-    public Optional<ProductoEntity> getProduct(int productId) {
-        return productoCRUDRepository.findById(productId);
+    @Override
+    public Optional<ProductDTO> getProduct(int productId) {
+        return productoCRUDRepository.findById(productId)
+                .map(producto -> mapper.toProduct(producto));
     }
 
-    public ProductoEntity save(ProductoEntity product) {
-        return productoCRUDRepository.save(product);
+    @Override
+    public ProductDTO save(ProductDTO product) {
+        ProductoEntity producto = mapper.toProducto(product);
+        return mapper.toProduct(productoCRUDRepository.save(producto));
     }
 
+    @Override
     public void delete(int productId) {
         productoCRUDRepository.deleteById(productId);
     }
