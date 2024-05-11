@@ -3,8 +3,7 @@ package com.unir.backend.web.controller;
 import com.unir.backend.domain.dto.ProductDTO;
 import com.unir.backend.domain.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,22 +14,27 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @GetMapping("/all")
     public List<ProductDTO> getAll(){
         return productService.getAll();
     }
 
-    public Optional<ProductDTO> getProduct(int productId){
+    @GetMapping("/{productId}")
+    public Optional<ProductDTO> getProduct(@PathVariable("productId") int productId){
         return productService.getProduct(productId);
     }
 
-    public Optional<List<ProductDTO>> getByCategory(int categoryId){
+    @GetMapping("/category/{categoryId}")
+    public Optional<List<ProductDTO>> getByCategory(@PathVariable("categoryId") int categoryId){
         return productService.getByCategory(categoryId);
     }
 
-    public ProductDTO save (ProductDTO product){
+    @PostMapping("/save")
+    public ProductDTO save (@RequestBody ProductDTO product){
         return productService.save(product);
     }
-    public boolean delete(int productId){
+    @DeleteMapping("/delete/{productId}")
+    public boolean delete(@PathVariable("productId") int productId){
         return productService.delete(productId);
     }
 }
