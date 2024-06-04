@@ -1,33 +1,75 @@
 package com.unir.backend.persistence.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "compras_productos")
-@IdClass(ComprasProductoEntityPK.class)
-@Getter
-@Setter
 @NoArgsConstructor
 public class ComprasProductoEntity {
-    @Id
-    @Column(name = "id_compra", nullable = false)
-    private Integer idCompra;
-    @Id
-    @Column(name = "id_producto", nullable = false)
-    private Integer idProducto;
+  @EmbeddedId
+  private ComprasProductoEntityPK id;
 
-    private Integer cantidad;
-    private Double total;
-    private Boolean estado;
+  private Integer cantidad;
+  private Double total;
+  private Boolean estado;
 
-    @ManyToOne
-    @JoinColumn(name = "id_compra",insertable = false,updatable = false)
-    private CompraEntity compra;
+  @ManyToOne
+  @MapsId("idCompra")
+  @JoinColumn(name = "id_compra", insertable = false, updatable = false)
+  private CompraEntity compra;
 
-    @ManyToOne
-    @JoinColumn(name = "id_producto",insertable = false,updatable = false)
-    private ProductoEntity producto;
+  @ManyToOne
+  @JoinColumn(name = "id_producto", insertable = false, updatable = false)
+  private ProductoEntity producto;
+
+  public ComprasProductoEntityPK getId() {
+    return id;
+  }
+
+  public void setId(ComprasProductoEntityPK id) {
+    this.id = id;
+  }
+
+  public Integer getCantidad() {
+    return cantidad;
+  }
+
+  public void setCantidad(Integer cantidad) {
+    this.cantidad = cantidad;
+  }
+
+  public Double getTotal() {
+    return total;
+  }
+
+  public void setTotal(Double total) {
+    this.total = total;
+  }
+
+  public Boolean getEstado() {
+    return estado;
+  }
+
+  public void setEstado(Boolean estado) {
+    this.estado = estado;
+  }
+
+  public CompraEntity getCompra() {
+    return compra;
+  }
+
+  public void setCompra(CompraEntity compra) {
+    this.compra = compra;
+  }
+
+  public ProductoEntity getProducto() {
+    return producto;
+  }
+
+  public void setProducto(ProductoEntity producto) {
+    this.producto = producto;
+  }
+
 }

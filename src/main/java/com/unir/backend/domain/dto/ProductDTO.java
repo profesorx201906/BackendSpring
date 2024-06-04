@@ -1,9 +1,5 @@
 package com.unir.backend.domain.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-
-
 public class ProductDTO {
     private int productId;
     private String name;

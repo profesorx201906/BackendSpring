@@ -1,8 +1,5 @@
 package com.unir.backend.domain.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-
 
 public class CategoryDTO {
     private int categoryID;

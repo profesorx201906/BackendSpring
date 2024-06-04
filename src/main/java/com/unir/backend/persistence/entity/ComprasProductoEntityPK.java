@@ -1,31 +1,34 @@
 package com.unir.backend.persistence.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class ComprasProductoEntityPK implements Serializable {
-    private Integer idProducto;
+ @Column(name = "id_compra")
     private Integer idCompra;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(idCompra, idProducto);
+    @Column(name = "id_producto")
+    private Integer idProducto;
+
+    public Integer getIdCompra() {
+        return idCompra;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ComprasProductoEntityPK that)) return false;
-        return Objects.equals(idCompra, that.idCompra)
-                && Objects.equals(idProducto, that.idProducto);
+    public void setIdCompra(Integer idCompra) {
+        this.idCompra = idCompra;
     }
+
+    public Integer getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(Integer idProducto) {
+        this.idProducto = idProducto;
+    }
+    
 }

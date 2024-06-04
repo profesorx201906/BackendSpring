@@ -1,15 +1,12 @@
 package com.unir.backend.persistence.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 import java.util.List;
 
 @Entity
 @Table(name="clientes")
-@NoArgsConstructor
 public class ClienteEntity {
     @Id
     private String id;

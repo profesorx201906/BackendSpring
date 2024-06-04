@@ -1,16 +1,11 @@
 package com.unir.backend.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "categorias")
-@NoArgsConstructor
 public class CategoriaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
