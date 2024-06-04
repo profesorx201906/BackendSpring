@@ -11,8 +11,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "compras")
-@Setter
-@Getter
 @NoArgsConstructor
 public class CompraEntity {
 
@@ -36,7 +34,41 @@ public class CompraEntity {
     @JoinColumn(name="id_cliente",insertable = false,updatable = false)
     private ClienteEntity cliente;
 
-    @OneToMany(mappedBy = "compra")
+    @OneToMany(mappedBy = "compra", cascade = {CascadeType.ALL})
     private List<ComprasProductoEntity> Productos;
+
+    public Integer getIdCompra() {
+      return idCompra;
+    }
+
+    public String getIdCliente() {
+      return idCliente;
+    }
+
+    public LocalDateTime getFecha() {
+      return fecha;
+    }
+
+    public String getMedioPago() {
+      return medioPago;
+    }
+
+    public String getComentario() {
+      return comentario;
+    }
+
+    public String getEstado() {
+      return estado;
+    }
+
+    public ClienteEntity getCliente() {
+      return cliente;
+    }
+
+    public List<ComprasProductoEntity> getProductos() {
+      return Productos;
+    }
+
+    
 
 }
