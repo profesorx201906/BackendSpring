@@ -2,6 +2,16 @@ package com.unir.backend.web.controller;
 
 import com.unir.backend.domain.dto.ProductDTO;
 import com.unir.backend.domain.service.ProductService;
+
+import io.swagger.v3.oas.annotations.OpenAPI31;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +22,22 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
+@Tag(name = "Productos", description = "El api productos trae toda la lista de productos")
 public class ProductController {
     @Autowired
     private ProductService productService;
     @GetMapping("/all")
-    public ResponseEntity<List<ProductDTO>> getAll() {
+    @Operation(summary = "Get all products")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved greeting",
+                    content = @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = ProductDTO.class))),
+            @ApiResponse(responseCode = "400", description = "Invalid name supplied",
+                    content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "500", description = "Internal server error",
+                    content = @Content(mediaType = "application/json"))
+    })
+     public ResponseEntity<List<ProductDTO>> getAll() {
         return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
     }
     @GetMapping("/{id}")

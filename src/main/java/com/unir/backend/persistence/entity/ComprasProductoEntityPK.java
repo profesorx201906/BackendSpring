@@ -9,7 +9,7 @@ import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class ComprasProductoEntityPK implements Serializable {
- @Column(name = "id_compra")
+    @Column(name = "id_compra")
     private Integer idCompra;
 
     @Column(name = "id_producto")
@@ -30,5 +30,5 @@ public class ComprasProductoEntityPK implements Serializable {
     public void setIdProducto(Integer idProducto) {
         this.idProducto = idProducto;
     }
-    
+
 }
