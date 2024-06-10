@@ -9,13 +9,15 @@ import org.springframework.stereotype.Repository;
 
 import com.unir.backend.persistence.entity.ClienteEntity;
 
+
 @Repository
 public interface ClienteCRUDRepository extends CrudRepository<ClienteEntity, String> {
 
-  @Query(value = "SELECT c.* " +
+  @Query(value = "SELECT DISTINCT c.* " +
       "FROM clientes c " +
       "INNER JOIN compras co on c.id=co.id_cliente " +
       "INNER JOIN compras_productos cp on cp.id_compra = co.id_compra " +
       "WHERE cp.id_producto=:productoId", nativeQuery = true)
   List<ClienteEntity> findByClienteByProducto(@Param("productoId") String productoId);
+ 
 }

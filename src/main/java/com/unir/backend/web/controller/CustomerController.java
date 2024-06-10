@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.unir.backend.domain.dto.CustomerDTO;
 import com.unir.backend.domain.service.CustomerService;
 
+
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
@@ -20,5 +21,11 @@ public class CustomerController {
     public List<CustomerDTO> getCustomerByProduct(@PathVariable("productID") String productId) {
         return customerService.getClienteByProducto(productId);
     }
+
+    @GetMapping("/all")
+    public List<CustomerDTO> getAll() {
+      return customerService.getAll();
+    }
+    
     
 }

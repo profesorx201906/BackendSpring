@@ -16,4 +16,9 @@ public class CustomerService {
   public List<CustomerDTO> getClienteByProducto(String clienteId) {
     return customerDTORepository.getClienteByProducto(clienteId);
   }
+
+  public List<CustomerDTO> getAll() {
+    return customerDTORepository.getAll();
+  }
+
 }

@@ -24,8 +24,14 @@ public class ClienteRepository implements CustomerDTORepository {
     public List<CustomerDTO> getClienteByProducto(String idProducto) {
 
       List<ClienteEntity> clientes = (List<ClienteEntity>) clienteCRUDRepository.findByClienteByProducto(idProducto);
-        return mapper.toProducts(clientes);
+        return mapper.toCustomers(clientes);
       
+    }
+
+    @Override
+    public List<CustomerDTO> getAll() {
+      List<ClienteEntity> clientes = (List<ClienteEntity>) clienteCRUDRepository.findAll();
+      return mapper.toCustomers(clientes);    
     }
 
 }

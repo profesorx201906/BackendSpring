@@ -6,5 +6,5 @@ import com.unir.backend.domain.dto.CustomerDTO;
 
 public interface CustomerDTORepository {
   List<CustomerDTO> getClienteByProducto(String clienteId);
-
+  List<CustomerDTO> getAll();
 }

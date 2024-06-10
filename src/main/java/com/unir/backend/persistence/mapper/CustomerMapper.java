@@ -11,7 +11,7 @@ import com.unir.backend.domain.dto.CustomerDTO;
 import com.unir.backend.persistence.entity.ClienteEntity;
 
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",uses = {PurchaseMapper.class})
 public interface CustomerMapper {
 
   @Mappings({
@@ -21,11 +21,11 @@ public interface CustomerMapper {
             @Mapping(source = "celular", target = "phone"),
             @Mapping(source = "direccion", target = "address"),
     })
-    CustomerDTO toCategory(ClienteEntity cliente);
+    CustomerDTO toCustomer(ClienteEntity cliente);
 
-    List<CustomerDTO> toProducts(List<ClienteEntity> productos);
+    List<CustomerDTO> toCustomers(List<ClienteEntity> clientes);
 
     @InheritInverseConfiguration
-    ClienteEntity toCategoria(CustomerDTO category);
+    ClienteEntity toCliente(CustomerDTO category);
 
 }

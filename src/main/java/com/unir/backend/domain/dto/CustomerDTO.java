@@ -1,7 +1,5 @@
 package com.unir.backend.domain.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class CustomerDTO {
   private String customerID;
   private String firstName;
