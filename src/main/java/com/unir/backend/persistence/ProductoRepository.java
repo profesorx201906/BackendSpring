@@ -1,9 +1,12 @@
 package com.unir.backend.persistence;
 
+import com.unir.backend.domain.dto.CustomerDTO;
 import com.unir.backend.domain.dto.ProductDTO;
 import com.unir.backend.domain.repository.ProductDTORepository;
 import com.unir.backend.persistence.crud.ProductoCRUDRepository;
+import com.unir.backend.persistence.entity.ClienteEntity;
 import com.unir.backend.persistence.entity.ProductoEntity;
+import com.unir.backend.persistence.mapper.CustomerMapper;
 import com.unir.backend.persistence.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,6 +20,8 @@ public class ProductoRepository implements ProductDTORepository {
     private ProductoCRUDRepository productoCRUDRepository;
     @Autowired
     private ProductMapper mapper;
+    @Autowired
+    private CustomerMapper mapperCustomer;
 
     @Override
     public List<ProductDTO> getAll() {
@@ -52,5 +57,7 @@ public class ProductoRepository implements ProductDTORepository {
     public void delete(int productId) {
         productoCRUDRepository.deleteById(productId);
     }
+
+
 
 }

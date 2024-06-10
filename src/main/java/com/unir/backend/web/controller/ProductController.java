@@ -1,10 +1,10 @@
 package com.unir.backend.web.controller;
 
+
 import com.unir.backend.domain.dto.ProductDTO;
 import com.unir.backend.domain.service.ProductService;
 
-import io.swagger.v3.oas.annotations.OpenAPI31;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -18,7 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 @RestController
 @RequestMapping("/products")
@@ -68,5 +69,5 @@ public class ProductController {
         } else {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-    }
+    }    
 }
